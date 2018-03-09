@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 export default props => (
+
     <View style={styles.view}>
 
         <View style={styles.viewTopo}>
