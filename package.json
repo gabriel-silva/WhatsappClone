@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "react": "16.3.0-alpha.1",
-    "react-native": "0.54.0"
+    "react-native": "0.54.0",
+    "react-native-router-flux": "https://github.com/aksonov/react-native-router-flux.git"
   },
   "devDependencies": {
     "babel-jest": "22.4.1",
