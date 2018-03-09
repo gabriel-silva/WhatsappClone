@@ -4,8 +4,10 @@ import {
     Text,
     TextInput,
     Button,
-    StyleSheet
+    StyleSheet,
+    TouchableHighlight
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default props => (
 
@@ -18,7 +20,11 @@ export default props => (
         <View style={styles.viewLogin}>
             <TextInput style={styles.txtLogin} placeholder='E-mail' />
             <TextInput style={styles.txtLogin} placeholder='Senha' />
-            <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
+            <TouchableHighlight onPress={
+                () => Actions.formCadastro()
+            }>
+                <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
+            </TouchableHighlight>
         </View>
 
         <View style={styles.viewAcessar}>
