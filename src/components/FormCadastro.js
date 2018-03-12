@@ -6,8 +6,9 @@ import {
     Button,
     StyleSheet
 } from 'react-native';
+import { connect } from 'react-redux';
 
-export default props => (
+const formCadastro = props => (
 
     <View style={styles.view}>
 
@@ -50,3 +51,14 @@ const styles = StyleSheet.create({
         height: 45
     }
 });
+
+const mapStateToProps = state => (
+    {
+        nome: state.AutenticacaoReducer.nome,
+        email: state.AutenticacaoReducer.email,
+        senha: state.AutenticacaoReducer.senha
+    }
+);
+
+//decorando com o estado o redux
+export default connect(mapStateToProps, null)(formCadastro);

@@ -69,11 +69,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state =>(
+const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
         senha: state.AutenticacaoReducer.senha
     }
 );
 
+//decorando com o estado o redux
 export default connect(mapStateToProps, null)(formLogin);
