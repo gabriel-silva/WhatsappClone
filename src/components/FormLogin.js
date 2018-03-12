@@ -78,4 +78,9 @@ const mapStateToProps = state => (
 );
 
 //decorando com o estado o redux
-export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin);
+export default connect(mapStateToProps,
+    {
+        modificaEmail: modificaEmail,
+        modificaSenha: modificaSenha
+    }
+)(formLogin);

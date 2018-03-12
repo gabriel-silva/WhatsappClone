@@ -7,16 +7,16 @@ import {
     StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { modificaEmail } from '../actions/AutenticacaoActions';
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
 const formCadastro = props => (
 
     <View style={styles.view}>
 
         <View style={styles.viewCadastro}>
-            <TextInput style={styles.txtCadastro} placeholder='Nome' />
-            <TextInput style={styles.txtCadastro} placeholder='E-mail' />
-            <TextInput style={styles.txtCadastro} placeholder='Senha' />
+            <TextInput value={props.nome} style={styles.txtCadastro} placeholder='Nome' />
+            <TextInput value={props.email} style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+            <TextInput value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
         </View>
 
         <View style={styles.viewCadastro}>
@@ -62,4 +62,9 @@ const mapStateToProps = state => (
 );
 
 //decorando com o estado o redux
-export default connect(mapStateToProps, null)(formCadastro);
+export default connect(mapStateToProps,
+    {
+        modificaEmail: modificaEmail,
+        modificaSenha: modificaSenha 
+    }
+)(formCadastro);
