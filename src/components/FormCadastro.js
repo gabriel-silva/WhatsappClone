@@ -4,34 +4,47 @@ import {
     Text,
     TextInput,
     Button,
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
 
-const formCadastro = props => (
+const bgFormCadastro = require('../imgs/bg.png');
 
-    <View style={styles.view}>
+const formCadastro = props => {
 
-        <View style={styles.viewCadastro}>
-            <TextInput value={props.nome} style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
-            <TextInput value={props.email} style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-            <TextInput secureTextEntry value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
-        </View>
+    return (
 
-        <View style={styles.viewCadastro}>
-            <Button
-                title='Cadastrar'
-                color='#115E54'
-                onPress={() => false}
-            />
-        </View>
+        <Image style={styles.imgFormCadastro} source={bgFormCadastro}>
 
-    </View>
+            <View style={styles.view}>
 
-);
+                <View style={styles.viewCadastro}>
+                    <TextInput value={props.nome} style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
+                    <TextInput value={props.email} style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+                    <TextInput secureTextEntry value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+                </View>
+
+                <View style={styles.viewCadastro}>
+                    <Button
+                        title='Cadastrar'
+                        color='#115E54'
+                        onPress={() => false}
+                    />
+                </View>
+
+            </View>
+
+        </Image>
+    );
+}
 
 const styles = StyleSheet.create({
+    imgFormCadastro: {
+        flex: 1,
+        width: null
+    },
     view: {
         flex: 1,
         padding: 10

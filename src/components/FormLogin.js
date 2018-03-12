@@ -5,44 +5,57 @@ import {
     TextInput,
     Button,
     StyleSheet,
-    TouchableHighlight
+    TouchableHighlight,
+    Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
-const formLogin = props => (
+const bgFormLogin = require('../imgs/bg.png');
 
-    <View style={styles.view}>
+const formLogin = props => {
 
-        <View style={styles.viewTopo}>
-            <Text style={styles.txtWhatsapp}> WhatsApp Clone </Text>
-        </View>
+    return (
 
-        <View style={styles.viewLogin}>
-            <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-            <TextInput secureTextEntry value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
-            <TouchableHighlight
-                onPress={
-                    () => Actions.formCadastro()
-                }>
-                <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
-            </TouchableHighlight>
-        </View>
+        <Image style={styles.imgFormLogin} source={bgFormLogin}>
 
-        <View style={styles.viewAcessar}>
-            <Button
-                title='Acessar'
-                color='#115E54'
-                onPress={() => false}
-            />
-        </View>
+            <View style={styles.view}>
+                <View style={styles.viewTopo}>
+                    <Text style={styles.txtWhatsapp}> WhatsApp Clone </Text>
+                </View>
 
-    </View>
+                <View style={styles.viewLogin}>
+                    <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+                    <TextInput secureTextEntry value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+                    <TouchableHighlight
+                        onPress={
+                            () => Actions.formCadastro()
+                        }>
+                        <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
+                    </TouchableHighlight>
+                </View>
 
-);
+                <View style={styles.viewAcessar}>
+                    <Button
+                        title='Acessar'
+                        color='#115E54'
+                        onPress={() => false}
+                    />
+                </View>
+            </View>
+
+        </Image>
+
+    );
+
+}
 
 const styles = StyleSheet.create({
+    imgFormLogin: {
+        flex: 1,
+        width: null
+    },
     view: {
         flex: 1,
         padding: 10
