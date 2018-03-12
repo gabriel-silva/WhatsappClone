@@ -16,7 +16,7 @@ const formCadastro = props => (
         <View style={styles.viewCadastro}>
             <TextInput value={props.nome} style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
             <TextInput value={props.email} style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-            <TextInput value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+            <TextInput secureTextEntry value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
         </View>
 
         <View style={styles.viewCadastro}>

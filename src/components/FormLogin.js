@@ -21,7 +21,7 @@ const formLogin = props => (
 
         <View style={styles.viewLogin}>
             <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-            <TextInput value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+            <TextInput secureTextEntry value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
             <TouchableHighlight
                 onPress={
                     () => Actions.formCadastro()
