@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 
 const formLogin = props => (
 
@@ -19,8 +20,8 @@ const formLogin = props => (
         </View>
 
         <View style={styles.viewLogin}>
-            <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' />
-            <TextInput value={props.senha} style={styles.txtLogin} placeholder='Senha' />
+            <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+            <TextInput value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
             <TouchableHighlight
                 onPress={
                     () => Actions.formCadastro()
@@ -77,4 +78,4 @@ const mapStateToProps = state => (
 );
 
 //decorando com o estado o redux
-export default connect(mapStateToProps, null)(formLogin);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin);
