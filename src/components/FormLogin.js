@@ -6,7 +6,7 @@ import {
     Button,
     StyleSheet,
     TouchableHighlight,
-    Image
+    ImageBackground
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ const formLogin = props => {
 
     return (
 
-        <Image style={styles.imgFormLogin} source={bgFormLogin}>
+        <ImageBackground style={styles.imgFormLogin} source={bgFormLogin}>
 
             <View style={styles.view}>
                 <View style={styles.viewTopo}>
@@ -26,8 +26,8 @@ const formLogin = props => {
                 </View>
 
                 <View style={styles.viewLogin}>
-                    <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-                    <TextInput secureTextEntry value={props.senha} style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+                    <TextInput value={props.email} placeholderTextColor='#FFF' style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+                    <TextInput secureTextEntry value={props.senha} placeholderTextColor='#FFF' style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
                     <TouchableHighlight
                         onPress={
                             () => Actions.formCadastro()
@@ -45,7 +45,7 @@ const formLogin = props => {
                 </View>
             </View>
 
-        </Image>
+        </ImageBackground>
 
     );
 
@@ -53,8 +53,7 @@ const formLogin = props => {
 
 const styles = StyleSheet.create({
     imgFormLogin: {
-        flex: 1,
-        width: null
+        flex: 1
     },
     view: {
         flex: 1,
@@ -73,13 +72,15 @@ const styles = StyleSheet.create({
     },
     txtWhatsapp: {
         fontSize: 25,
+        color: '#FFF'
     },
     txtLogin: {
         fontSize: 20,
         height: 45
     },
     txtCadastro: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#FFF'
     }
 });
 

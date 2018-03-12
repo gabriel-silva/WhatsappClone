@@ -5,7 +5,7 @@ import {
     TextInput,
     Button,
     StyleSheet,
-    Image
+    ImageBackground
 } from 'react-native';
 import { connect } from 'react-redux';
 import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
@@ -16,14 +16,14 @@ const formCadastro = props => {
 
     return (
 
-        <Image style={styles.imgFormCadastro} source={bgFormCadastro}>
+        <ImageBackground style={styles.imgFormCadastro} source={bgFormCadastro}>
 
             <View style={styles.view}>
 
                 <View style={styles.viewCadastro}>
-                    <TextInput value={props.nome} style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
-                    <TextInput value={props.email} style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-                    <TextInput secureTextEntry value={props.senha} style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+                    <TextInput value={props.nome} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
+                    <TextInput value={props.email} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
+                    <TextInput secureTextEntry value={props.senha} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
                 </View>
 
                 <View style={styles.viewCadastro}>
@@ -36,14 +36,13 @@ const formCadastro = props => {
 
             </View>
 
-        </Image>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
     imgFormCadastro: {
-        flex: 1,
-        width: null
+        flex: 1
     },
     view: {
         flex: 1,
