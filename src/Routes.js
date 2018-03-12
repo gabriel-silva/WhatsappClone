@@ -6,8 +6,8 @@ import FormCadastro from './components/FormCadastro';
 export default props => (
     <Router>
         <Scene key='app'>
-            <Scene key='formLogin' component={FormLogin} title="Login" />
-            <Scene key='formCadastro' component={FormCadastro} initil title="Cadastro" />
+            <Scene key='formLogin' component={FormLogin} initil title="Login" />
+            <Scene key='formCadastro' component={FormCadastro} title="Cadastro" />
         </Scene>
     </Router>
 );

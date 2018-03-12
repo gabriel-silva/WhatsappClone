@@ -19,7 +19,7 @@ export default props => (
 
         <View style={styles.viewCadastro}>
             <Button
-                title='Acessar'
+                title='Cadastrar'
                 color='#115E54'
                 onPress={() => false}
             />
