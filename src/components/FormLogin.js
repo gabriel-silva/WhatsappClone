@@ -91,7 +91,7 @@ const mapStateToProps = state => (
     }
 );
 
-//decorando com o estado o redux
+//decorando com o estado do redux
 export default connect(mapStateToProps,
     {
         modificaEmail: modificaEmail,

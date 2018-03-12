@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -8,36 +8,73 @@ import {
     ImageBackground
 } from 'react-native';
 import { connect } from 'react-redux';
-import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
+import {
+    modificaEmail,
+    modificaSenha,
+    modificaNome,
+    cadastraUsuario
+} from '../actions/AutenticacaoActions';
 
 const bgFormCadastro = require('../imgs/bg.png');
 
-const formCadastro = props => {
+class FormCadastro extends Component {
 
-    return (
+    _cadastraUsuario() {
 
-        <ImageBackground style={styles.imgFormCadastro} source={bgFormCadastro}>
+        const { nome, email, senha } = this.props;
 
-            <View style={styles.view}>
+        this.props.cadastraUsuario({
+            nome: nome,
+            email: email,
+            senha: senha
+        });
+    }
 
-                <View style={styles.viewCadastro}>
-                    <TextInput value={props.nome} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='Nome' onChangeText={(texto) => { props.modificaNome(texto) }} />
-                    <TextInput value={props.email} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-                    <TextInput secureTextEntry value={props.senha} placeholderTextColor='#FFF' style={styles.txtCadastro} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
+    render() {
+        return (
+
+            <ImageBackground style={styles.imgFormCadastro} source={bgFormCadastro}>
+
+                <View style={styles.view}>
+
+                    <View style={styles.viewCadastro}>
+                        <TextInput
+                            value={this.props.nome}
+                            placeholderTextColor='#FFF'
+                            style={styles.txtCadastro}
+                            placeholder='Nome'
+                            onChangeText={(texto) => { this.props.modificaNome(texto) }}
+                        />
+                        <TextInput
+                            value={this.props.email}
+                            placeholderTextColor='#FFF'
+                            style={styles.txtCadastro}
+                            placeholder='E-mail'
+                            onChangeText={(texto) => { this.props.modificaEmail(texto) }}
+                        />
+                        <TextInput
+                            secureTextEntry
+                            value={this.props.senha}
+                            placeholderTextColor='#FFF'
+                            style={styles.txtCadastro}
+                            placeholder='Senha'
+                            onChangeText={(texto) => { this.props.modificaSenha(texto) }}
+                        />
+                    </View>
+
+                    <View style={styles.viewCadastro}>
+                        <Button
+                            title='Cadastrar'
+                            color='#115E54'
+                            onPress={() => this._cadastraUsuario()}
+                        />
+                    </View>
+
                 </View>
 
-                <View style={styles.viewCadastro}>
-                    <Button
-                        title='Cadastrar'
-                        color='#115E54'
-                        onPress={() => false}
-                    />
-                </View>
-
-            </View>
-
-        </ImageBackground>
-    );
+            </ImageBackground>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -73,11 +110,12 @@ const mapStateToProps = state => (
     }
 );
 
-//decorando com o estado o redux
+//decorando com o estado do redux
 export default connect(mapStateToProps,
     {
         modificaEmail: modificaEmail,
         modificaSenha: modificaSenha,
-        modificaNome: modificaNome
+        modificaNome: modificaNome,
+        cadastraUsuario: cadastraUsuario
     }
-)(formCadastro);
+)(FormCadastro);
