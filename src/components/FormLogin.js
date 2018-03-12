@@ -8,8 +8,9 @@ import {
     TouchableHighlight
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
-export default props => (
+const formLogin = props => (
 
     <View style={styles.view}>
 
@@ -18,8 +19,8 @@ export default props => (
         </View>
 
         <View style={styles.viewLogin}>
-            <TextInput style={styles.txtLogin} placeholder='E-mail' />
-            <TextInput style={styles.txtLogin} placeholder='Senha' />
+            <TextInput value={props.email} style={styles.txtLogin} placeholder='E-mail' />
+            <TextInput value={props.senha} style={styles.txtLogin} placeholder='Senha' />
             <TouchableHighlight
                 onPress={
                     () => Actions.formCadastro()
@@ -67,3 +68,12 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
+
+const mapStateToProps = state =>(
+    {
+        email: state.AutenticacaoReducer.email,
+        senha: state.AutenticacaoReducer.senha
+    }
+);
+
+export default connect(mapStateToProps, null)(formLogin);
