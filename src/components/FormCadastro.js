@@ -31,6 +31,7 @@ class FormCadastro extends Component {
     }
 
     render() {
+
         return (
 
             <ImageBackground style={styles.imgFormCadastro} source={bgFormCadastro}>
@@ -60,6 +61,10 @@ class FormCadastro extends Component {
                             placeholder='Senha'
                             onChangeText={(texto) => { this.props.modificaSenha(texto) }}
                         />
+
+
+                        <Text style={styles.erroCadastro}>{this.props.erroCadastro}</Text>
+
                     </View>
 
                     <View style={styles.viewCadastro}>
@@ -99,6 +104,10 @@ const styles = StyleSheet.create({
     txtLogin: {
         fontSize: 20,
         height: 45
+    },
+    erroCadastro: {
+        color: '#ff0000',
+        fontSize: 18
     }
 });
 
@@ -106,7 +115,8 @@ const mapStateToProps = state => (
     {
         nome: state.AutenticacaoReducer.nome,
         email: state.AutenticacaoReducer.email,
-        senha: state.AutenticacaoReducer.senha
+        senha: state.AutenticacaoReducer.senha,
+        erroCadastro: state.AutenticacaoReducer.erroCadastro
     }
 );
 
