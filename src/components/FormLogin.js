@@ -6,7 +6,8 @@ import {
     Button,
     StyleSheet,
     TouchableHighlight,
-    ImageBackground
+    ImageBackground,
+    ActivityIndicator
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -24,6 +25,22 @@ class formLogin extends Component {
         const { email, senha } = this.props;
         this.props.autenticarUsuario({ email, senha });
     }
+
+    renderBtnAcessar() {
+        if (this.props.loadLoading) {
+            return (
+                <ActivityIndicator size="large" />
+            );
+        }
+        return (
+            <Button
+                title='Acessar'
+                color='#115E54'
+                onPress={() => this._autenticarUsuario()}
+            />
+        );
+    }
+
 
     render() {
 
@@ -66,11 +83,7 @@ class formLogin extends Component {
                     </View>
 
                     <View style={styles.viewAcessar}>
-                        <Button
-                            title='Acessar'
-                            color='#115E54'
-                            onPress={() => this._autenticarUsuario()}
-                        />
+                        {this.renderBtnAcessar()}
                     </View>
 
                 </View>
@@ -122,7 +135,8 @@ const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
         senha: state.AutenticacaoReducer.senha,
-        erroLogin: state.AutenticacaoReducer.erroLogin
+        erroLogin: state.AutenticacaoReducer.erroLogin,
+        loadLoading: state.AutenticacaoReducer.loadLoading
     }
 );
 
