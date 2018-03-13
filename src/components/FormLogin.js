@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -10,45 +10,75 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
+import {
+    modificaEmail,
+    modificaSenha,
+    autenticarUsuario
+} from '../actions/AutenticacaoActions';
 
 const bgFormLogin = require('../imgs/bg.png');
 
-const formLogin = props => {
+class formLogin extends Component {
 
-    return (
+    _autenticarUsuario() {
+        const { email, senha } = this.props;
+        this.props.autenticarUsuario({ email, senha });
+    }
 
-        <ImageBackground style={styles.imgFormLogin} source={bgFormLogin}>
+    render() {
 
-            <View style={styles.view}>
-                <View style={styles.viewTopo}>
-                    <Text style={styles.txtWhatsapp}> WhatsApp Clone </Text>
+        return (
+
+            <ImageBackground style={styles.imgFormLogin} source={bgFormLogin}>
+
+                <View style={styles.view}>
+                    <View style={styles.viewTopo}>
+                        <Text style={styles.txtWhatsapp}> WhatsApp Clone </Text>
+                    </View>
+
+                    <View style={styles.viewLogin}>
+                        <TextInput
+                            value={this.props.email}
+                            placeholderTextColor='#FFF'
+                            style={styles.txtLogin}
+                            placeholder='E-mail'
+                            onChangeText={(texto) => { this.props.modificaEmail(texto) }}
+                        />
+
+                        <TextInput
+                            secureTextEntry
+                            value={this.props.senha}
+                            placeholderTextColor='#FFF'
+                            style={styles.txtLogin}
+                            placeholder='Senha'
+                            onChangeText={(texto) => { this.props.modificaSenha(texto) }}
+                        />
+
+                        <Text style={styles.erroLogin}>{this.props.erroLogin}</Text>
+
+                        <TouchableHighlight
+                            onPress={
+                                () => Actions.formCadastro()
+                            }>
+                            <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
+                        </TouchableHighlight>
+
+                    </View>
+
+                    <View style={styles.viewAcessar}>
+                        <Button
+                            title='Acessar'
+                            color='#115E54'
+                            onPress={() => this._autenticarUsuario()}
+                        />
+                    </View>
+
                 </View>
 
-                <View style={styles.viewLogin}>
-                    <TextInput value={props.email} placeholderTextColor='#FFF' style={styles.txtLogin} placeholder='E-mail' onChangeText={(texto) => { props.modificaEmail(texto) }} />
-                    <TextInput secureTextEntry value={props.senha} placeholderTextColor='#FFF' style={styles.txtLogin} placeholder='Senha' onChangeText={(texto) => { props.modificaSenha(texto) }} />
-                    <TouchableHighlight
-                        onPress={
-                            () => Actions.formCadastro()
-                        }>
-                        <Text style={styles.txtCadastro}>Ainda não tem cadastro? cadastre-se</Text>
-                    </TouchableHighlight>
-                </View>
+            </ImageBackground>
 
-                <View style={styles.viewAcessar}>
-                    <Button
-                        title='Acessar'
-                        color='#115E54'
-                        onPress={() => false}
-                    />
-                </View>
-            </View>
-
-        </ImageBackground>
-
-    );
-
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -81,13 +111,18 @@ const styles = StyleSheet.create({
     txtCadastro: {
         fontSize: 20,
         color: '#FFF'
+    },
+    erroLogin: {
+        color: '#ff0000',
+        fontSize: 18
     }
 });
 
 const mapStateToProps = state => (
     {
         email: state.AutenticacaoReducer.email,
-        senha: state.AutenticacaoReducer.senha
+        senha: state.AutenticacaoReducer.senha,
+        erroLogin: state.AutenticacaoReducer.erroLogin
     }
 );
 
@@ -95,6 +130,7 @@ const mapStateToProps = state => (
 export default connect(mapStateToProps,
     {
         modificaEmail: modificaEmail,
-        modificaSenha: modificaSenha
+        modificaSenha: modificaSenha,
+        autenticarUsuario: autenticarUsuario
     }
 )(formLogin);
