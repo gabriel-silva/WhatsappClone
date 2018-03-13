@@ -4,6 +4,7 @@ import FormLogin from './components/FormLogin';
 import FormCadastro from './components/FormCadastro';
 import BoasVindas from './components/BoasVindas';
 import Principal from './components/Principal';
+import AdicionarContato from './components/AdicionarContato';
 
 export default props => (
     <Router
@@ -34,6 +35,12 @@ export default props => (
                 hideNavBar={true}
                 initial
                 title="Principal"
+            />
+
+            <Scene key='adicionarContato'
+                component={AdicionarContato}
+                hideNavBar={false}
+                title="Adicionar Contato"
             />
 
         </Scene>
